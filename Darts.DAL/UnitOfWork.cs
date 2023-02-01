@@ -86,19 +86,6 @@ namespace BackEnd.DAL
             }
         }
 
-        private IGenericRepository<Coordinate> coordinateRepository;
-        public IGenericRepository<Coordinate> CoordinateRepository
-        {
-            get
-            {
-                if (coordinateRepository == null)
-                {
-                    coordinateRepository = new CoordinateRepository(_context);
-                }
-
-                return coordinateRepository;
-            }
-        }
         private IGenericRepository<FarmStaff> farmStaffRepository;
         public IGenericRepository<FarmStaff> FarmStaffRepository
         {

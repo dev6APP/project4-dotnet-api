@@ -27,7 +27,6 @@ namespace BackEnd.DAL
         public DbSet<FarmStaff> FarmStaffs { get; set; }
         public DbSet<Boundary> Boundaries { get; set; }
         public DbSet<PhotoData> Photos { get; set; }
-        public DbSet<Coordinate> Coordinates { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,10 +40,8 @@ namespace BackEnd.DAL
             modelBuilder.Entity<FarmStaff>().ToTable("FarmStaff")
                 .HasKey( k => new { k.FarmID, k.WorkerID });
             modelBuilder.Entity<Field>().ToTable("Field");
-            modelBuilder.Entity<Coordinate>().ToTable("Coordinate");
             modelBuilder.Entity<PhotoData>().ToTable("PhotoData");
-            modelBuilder.Entity<Boundary>().ToTable("Boundary")
-                .HasKey(k => new { k.CoordinateID, k.FieldID});
+            modelBuilder.Entity<Boundary>().ToTable("Boundary");
         }
 
     }

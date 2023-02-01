@@ -49,11 +49,6 @@ namespace BackEnd.API.Controllers
                 .Include(f => f.FarmStaffs).Include(f => f.FieldOwner);
         }
 
-        /*[HttpGet("myPronostics/{userId}")]
-        public async Task<IEnumerable<Pronostic>> GetMyPredictions(long userId)
-        {
-            return _uow.PronosticRepository.AllQuery().Where(p => p.UserID == userId);
-        }*/
 
         [HttpGet("{id}")]
         public IEnumerable<Farm> Get(long id)
@@ -76,6 +71,8 @@ namespace BackEnd.API.Controllers
             Farm t = _uow.FarmRepository.Get(id);
             t.Name = farmDto.Name;
             t.Address = farmDto.Address;
+
+
 
             _uow.FarmRepository.Update(t);
             _uow.SaveChangesAsync();

@@ -25,8 +25,9 @@ namespace BackEnd.API.Controllers
             p.WorkerID = photoDataDto.WorkerID;
             p.FieldOwnerID = photoDataDto.FieldOwnerID;
             p.Date = photoDataDto.Date;
-            var max_id = _uow.CoordinateRepository.AllQuery().Select(c => c.CoordinateID).Max();
-            p.CoordinateID = max_id;
+            p.X = photoDataDto.X;
+            p.Y = photoDataDto.Y;
+
 
             _uow.PhotoDataRepository.Add(p);
             _uow.SaveChangesAsync();
@@ -68,11 +69,18 @@ namespace BackEnd.API.Controllers
         }
 
         // amount of flowers for the last 12 months
-        [HttpGet("flowersLastYear/{id}")]
+        [HttpGet("flowersLastYear/fieldOwner/{id}")]
         public long GetFlowersLastYear(long id)
         {
-            return _uow.PhotoDataRepository.AllQuery().Where(o => o.FieldID == id).Where(f => f.Date.Year >= DateTime.Now.Year)
+            return _uow.PhotoDataRepository.AllQuery().Where(o => o.FieldOwnerID == id).Where(f => f.Date.Year >= DateTime.Now.Year)
                 .Select(n => n.AmountFlowers).Sum(); 
+        }
+
+        [HttpGet("flowersLastYear/Field/{id}")]
+        public long GetFlowersLastYearField(long id)
+        {
+            return _uow.PhotoDataRepository.AllQuery().Where(o => o.FieldID == id).Where(f => f.Date.Year >= DateTime.Now.Year)
+                .Select(n => n.AmountFlowers).Sum();
         }
         /*[HttpPut]
         public Company Put(CompanyDto companyDto, long id)

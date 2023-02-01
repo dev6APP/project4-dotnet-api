@@ -25,10 +25,13 @@ namespace BackEnd.API.Controllers
         [HttpPost]
         public Boundary SetBoundary([FromBody] SetBoundaryDto boundary)
         {
-            Boundary b = new();
-            b.FieldID = boundary.FieldID;
-            var max_id = _uow.CoordinateRepository.AllQuery().Select(c => c.CoordinateID).Max();
-            b.CoordinateID = max_id;
+            Boundary b = new()
+            {
+                FieldID = boundary.FieldID,
+                BoundaryOrder= boundary.BoundaryOrder,
+                X = boundary.X,
+                Y = boundary.Y
+            };
 
             _uow.BoundaryRepository.Add(b);
             _uow.SaveChangesAsync();
@@ -38,46 +41,14 @@ namespace BackEnd.API.Controllers
         [HttpGet]
         public IEnumerable<Boundary> Get()
         {
-            return _uow.BoundaryRepository.AllQuery().Include(b => b.Coordinate).Include(b => b.Field);
+            return _uow.BoundaryRepository.AllQuery().Include(b => b.Field);
         }
 
         [HttpGet("field/{id}")]
         public IEnumerable<Boundary> GetFieldBoundaries(long id)
         {
-            return _uow.BoundaryRepository.AllQuery().Where(f => f.FieldID == id).Include(b => b.Coordinate);
+            return _uow.BoundaryRepository.AllQuery().Where(f => f.FieldID == id);
         }
-        /*[HttpGet("{id}")]
-        public async Task<Boundary> Get(long id)
-        {
-            return await _uow.BoundaryRepository.GetAsync(id);
-        }*/
-
-        /*[HttpPut]
-        public User Put(editUserDto user, long id)
-        {
-            User e = _uow.UserRepository.Get(id);
-            e.Name = user.Name;
-            e.Email = user.Email;
-            e.Address = user.Address;
-            e.City = user.City;
-            e.ZipCode = user.ZipCode;
-
-
-
-            _uow.UserRepository.Update(e);
-            _uow.SaveChangesAsync();
-
-            return e;
-        }
-
-        [HttpPost("Login")]
-        public async Task<IActionResult> PostLogin([FromBody] LoginUser model)
-        {
-            var result = await _userService.Login(model);
-
-            if (result == null)
-                return BadRequest("Username or password is incorrect");
-            return Ok(result);
-        }*/
+        
     }
 }

@@ -18,7 +18,6 @@ namespace BackEnd.DAL
         IGenericRepository<Boundary> BoundaryRepository { get; }
         IGenericRepository<Worker> WorkerRepository { get; }
         IGenericRepository<Permission> PermissionRepository { get; }
-        IGenericRepository<Coordinate> CoordinateRepository { get; }
         IGenericRepository<FarmStaff> FarmStaffRepository { get; }
 
 

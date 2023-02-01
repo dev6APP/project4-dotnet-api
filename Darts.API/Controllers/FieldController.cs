@@ -62,7 +62,7 @@ namespace BackEnd.API.Controllers
         [HttpGet("farm/{farmId}")]
         public IEnumerable<Field> GetFieldsOfFarm(long farmId)
         {
-            return _uow.FieldRepository.AllQuery().Where(f => f.FarmID == farmId);
+            return _uow.FieldRepository.AllQuery().Where(f => f.FarmID == farmId).Include(f => f.Boundaries);
         }
 
         [HttpPut("{id}")]

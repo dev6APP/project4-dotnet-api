@@ -14,13 +14,13 @@ namespace BackEnd.Domain.Models
         public long AmountFlowers { get; set; }
         [Required]
         public DateTime Date { get; set; }
-        public long CoordinateID { get; set; }
         public long FieldID { get; set; }
         public long WorkerID { get; set; }
 
         public long FieldOwnerID { get; set; }
 
-        public Coordinate Coordinate { get; set; }
+        public string X { get; set; }
+        public string Y { get; set; }
         public Field Field { get; set; }
         public Worker Worker { get; set; }
         public FieldOwner FieldOwner { get; set; }

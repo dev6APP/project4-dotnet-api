@@ -10,11 +10,13 @@ namespace BackEnd.Domain.Models
     public class Boundary
     {
         [Required]
+        public long BoundaryID { get; set; }
         public long FieldID { get; set; }
-        [Required]
-        public long CoordinateID { get; set; }
+        public int BoundaryOrder { get; set; }
+        public string X { get; set; }
+        public string Y { get; set; }
 
-        public Coordinate Coordinate { get; set; }
+
         public Field Field { get; set; }
     }
 }
