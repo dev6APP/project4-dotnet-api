@@ -71,7 +71,7 @@ namespace BackEnd.API.Controllers
         [HttpGet("flowersLastYear/{id}")]
         public long GetFlowersLastYear(long id)
         {
-            return _uow.PhotoDataRepository.AllQuery().Where(o => o.FieldOwnerID == id).Where(f => f.Date >= DateTime.Now.AddYears(-1))
+            return _uow.PhotoDataRepository.AllQuery().Where(o => o.FieldID == id).Where(f => f.Date.Year >= DateTime.Now.Year)
                 .Select(n => n.AmountFlowers).Sum(); 
         }
         /*[HttpPut]

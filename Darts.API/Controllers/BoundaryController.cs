@@ -36,9 +36,9 @@ namespace BackEnd.API.Controllers
             return b;
         }
         [HttpGet]
-        public async Task<IEnumerable<Boundary>> Get()
+        public IEnumerable<Boundary> Get()
         {
-            return await _uow.BoundaryRepository.AllAsync();
+            return _uow.BoundaryRepository.AllQuery().Include(b => b.Coordinate).Include(b => b.Field);
         }
 
         [HttpGet("field/{id}")]
