@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/BackEndAPIproject4/apis/BackEndAPIproject4",
+      "type": "apis.azure"
+    }
+  }
+}

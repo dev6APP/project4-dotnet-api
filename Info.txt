@@ -1,0 +1,2 @@
+dotnet ef migrations add InitialCreate --project BackEnd.API (BackEnd.DAL as default project)
+dotnet ef database update --project BackEnd.API
