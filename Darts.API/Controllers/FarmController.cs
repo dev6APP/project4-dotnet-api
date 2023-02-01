@@ -76,7 +76,6 @@ namespace BackEnd.API.Controllers
             Farm t = _uow.FarmRepository.Get(id);
             t.Name = farmDto.Name;
             t.Address = farmDto.Address;
-            t.Started = farmDto.Started;
 
             _uow.FarmRepository.Update(t);
             _uow.SaveChangesAsync();
