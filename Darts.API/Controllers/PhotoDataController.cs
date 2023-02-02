@@ -56,9 +56,15 @@ namespace BackEnd.API.Controllers
             return await _uow.PhotoDataRepository.AllAsync();
         }
         [HttpGet("{id}")]
-        public async Task<PhotoData> Get(int id)
+        public async Task<PhotoData> Get(long id)
         {
             return await _uow.PhotoDataRepository.GetAsync(id);
+        }
+
+        [HttpGet("Field/{id}")]
+        public IEnumerable<PhotoData> GetPhotoDataByField(long id)
+        {
+            return _uow.PhotoDataRepository.AllQuery().Where(f => f.FieldID == id).Include(f => f.Field);
         }
 
         [HttpGet("fieldOwner/{fieldOwner}/year/{year}")]
