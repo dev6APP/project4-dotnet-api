@@ -53,9 +53,9 @@ namespace BackEnd.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Field> Get(long id)
+        public IEnumerable<Field> Get(long id)
         {
-            return await _uow.FieldRepository.GetAsync(id);
+            return _uow.FieldRepository.AllQuery().Where(f => f.FieldID == id).Include(f => f.Boundaries);
         }
 
         // fields that are part of a certain farm
