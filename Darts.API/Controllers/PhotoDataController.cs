@@ -64,7 +64,7 @@ namespace BackEnd.API.Controllers
         [HttpGet("Field/{id}")]
         public IEnumerable<PhotoData> GetPhotoDataByField(long id)
         {
-            return _uow.PhotoDataRepository.AllQuery().Where(f => f.FieldID == id).Include(f => f.Field);
+            return _uow.PhotoDataRepository.AllQuery().Where(f => f.FieldID == id);
         }
 
         [HttpGet("fieldOwner/{fieldOwner}/year/{year}")]
